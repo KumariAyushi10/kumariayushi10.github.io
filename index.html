@@ -8,9 +8,9 @@
       content="Kumari Ayushi — Data Analyst portfolio featuring SQL, Python analytics, A/B testing, business intelligence and machine learning projects."
     />
     <title>Kumari Ayushi | Data Analyst</title>
-    <link rel="icon" sizes="32x32" href="assets/profilesec.jpeg" type="image/jpeg" />
-    <link rel="shortcut icon" href="assets/profilesec.jpeg" type="image/jpeg" />
-    <link rel="apple-touch-icon" href="assets/profilesec.jpeg" />
+    <link rel="icon" sizes="32x32" href="assets/sec.jpeg" type="image/jpeg" />
+    <link rel="shortcut icon" href="assets/sec.jpeg" type="image/jpeg" />
+    <link rel="apple-touch-icon" href="assets/sec.jpeg" />
     <meta name="theme-color" content="#070707" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -575,7 +575,7 @@
         font-size: 1.04rem;
       }
 
-      .profile-meta {
+      .-meta {
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
@@ -670,7 +670,7 @@
         border-radius: 10px;
       }
 
-      .profile-area {
+      .-area {
         position: relative;
         min-height: 600px;
         display: grid;
@@ -678,7 +678,7 @@
         perspective: 1400px;
       }
 
-      .profile-glow {
+      .-glow {
         position: absolute;
         width: 72%;
         aspect-ratio: 1;
@@ -739,7 +739,7 @@
         background: linear-gradient(145deg, #1c1c1c, #0a0a0a);
       }
 
-      #profile-photo {
+      #-photo {
         position: absolute;
         inset: 0;
         width: 100%;
@@ -1383,7 +1383,7 @@
           min-height: unset;
         }
 
-        .profile-area {
+        .-area {
           min-height: 460px;
           order: -1;
         }
@@ -1476,7 +1476,7 @@
           width: min(260px, 80%);
         }
 
-        .profile-area {
+        .-area {
           min-height: 380px;
         }
 
@@ -1711,7 +1711,7 @@
         <span class="loader-ring"></span>
         <img
           class="loader-photo"
-          src="assets/profilesec.jpeg"
+          src="assets/sec.jpeg"
           alt=""
         />
       </div>
@@ -1809,7 +1809,7 @@
             clear business decisions.
           </p>
 
-          <div class="profile-meta">
+          <div class="-meta">
             <span class="meta-item">Data Analyst Intern @ Bondub</span>
             <span class="meta-item">Ex-AI-ML Intern @ Eduskills</span>
             <span class="meta-item">Galgotias University</span>
@@ -1831,11 +1831,18 @@
               rel="noopener"
               >LinkedIn ↗</a
             >
+            <a
+              class="button secondary"
+              href="mailto:kumariayushi8383@gmail.com"
+              target="_blank"
+              rel="noopener"
+              >Email ↗</a
+            >
           </div>
         </div>
 
-        <div class="profile-area" id="profileArea">
-          <div class="profile-glow"></div>
+        <div class="-area" id="Area">
+          <div class="-glow"></div>
 
           <div class="floating-card one">RFM + K-Means</div>
           <div class="floating-card two">Python · SQL · BI</div>
@@ -1846,9 +1853,9 @@
               <div class="polaroid-tape"></div>
               <div class="polaroid-photo-well">
                 <img
-                  id="profile-photo"
-                  src="assets/Profile.jpeg"
-                  alt="Kumari Ayushi profile photo"
+                  id="-photo"
+                  src="assets/profile.jpeg"
+                  alt="Kumari Ayushi  photo"
                 />
               </div>
               <div class="photo-caption">
@@ -2217,7 +2224,7 @@
                 <p>
                   Income by home ownership, verified vs. non-verified
                   borrowers, and debt-to-income patterns are compared via a
-                  <code>LoanProfile()</code> lookup procedure.
+                  <code>Loan()</code> lookup procedure.
                 </p>
               </div>
             </div>
@@ -2787,7 +2794,7 @@
       // and leans in on scroll — inspired by a pinned/tilted photo card. ----
       const stage = document.getElementById("photoStage");
       const frame = document.getElementById("polaroidFrame");
-      const profileArea = document.getElementById("profileArea");
+      const Area = document.getElementById("Area");
       const reduceMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)",
       );
@@ -2822,7 +2829,7 @@
       }
 
       function updateScrollTarget() {
-        const rect = profileArea.getBoundingClientRect();
+        const rect = Area.getBoundingClientRect();
         const viewportCenter = window.innerHeight / 2;
         const distanceFromCenter = rect.top + rect.height / 2 - viewportCenter;
 
