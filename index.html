@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -461,6 +460,8 @@
         background: var(--nav-bg);
         backdrop-filter: blur(18px);
         box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+        max-height: calc(100vh - 90px);
+        overflow-y: auto;
       }
 
       .nav-links-mobile.open {
@@ -490,6 +491,7 @@
       .hero {
         min-height: 100vh;
         padding-top: 120px;
+        padding-bottom: 40px;
         display: grid;
         grid-template-columns: 1.12fr 0.88fr;
         align-items: center;
@@ -529,9 +531,9 @@
       h1 {
         max-width: 760px;
         margin: 22px 0;
-        font-size: clamp(3.5rem, 7vw, 6.8rem);
-        line-height: 0.9;
-        letter-spacing: -0.065em;
+        font-size: clamp(2.6rem, 7vw, 6.8rem);
+        line-height: 0.95;
+        letter-spacing: -0.05em;
       }
 
       .gold {
@@ -789,7 +791,7 @@
         position: fixed;
         right: clamp(14px, 4vw, 40px);
         bottom: clamp(14px, 4vh, 40px);
-        width: clamp(120px, 15vw, 190px);
+        width: clamp(96px, 15vw, 190px);
         z-index: 45;
       }
 
@@ -805,6 +807,7 @@
         font-size: 0.72rem;
         pointer-events: none;
         animation: cardFloat 6s ease-in-out infinite;
+        white-space: nowrap;
       }
 
       .floating-card.one {
@@ -851,9 +854,9 @@
         position: relative;
         display: inline-block;
         margin: 10px 0 12px;
-        font-size: clamp(2.35rem, 5vw, 4.3rem);
-        line-height: 1;
-        letter-spacing: -0.045em;
+        font-size: clamp(2rem, 5vw, 4.3rem);
+        line-height: 1.05;
+        letter-spacing: -0.04em;
       }
 
       h2::after {
@@ -897,6 +900,7 @@
           0 0 55px rgba(214, 173, 85, 0.1),
           inset 0 0 30px rgba(214, 173, 85, 0.025);
         margin-bottom: 18px;
+        overflow: hidden;
       }
 
       .project-main:not(:first-of-type) {
@@ -908,19 +912,21 @@
         align-items: flex-start;
         justify-content: space-between;
         gap: 20px;
+        flex-wrap: wrap;
       }
 
       .project-number {
         color: var(--gold-light);
         font-size: 0.72rem;
         font-weight: 800;
-        letter-spacing: 0.15em;
+        letter-spacing: 0.1em;
       }
 
       .project-title {
         margin: 10px 0;
-        font-size: clamp(2rem, 4vw, 3.8rem);
-        letter-spacing: -0.045em;
+        font-size: clamp(1.7rem, 4vw, 3.8rem);
+        letter-spacing: -0.04em;
+        word-break: break-word;
       }
 
       .project-description {
@@ -967,6 +973,7 @@
       .stat {
         padding: 18px;
         border-radius: 17px;
+        min-width: 0;
       }
 
       .stat strong {
@@ -974,6 +981,7 @@
         margin-bottom: 4px;
         color: var(--gold-light);
         font-size: 1.55rem;
+        word-break: break-word;
       }
 
       .stat span {
@@ -992,6 +1000,7 @@
         position: relative;
         padding: 25px;
         border-radius: 22px;
+        min-width: 0;
         transition:
           transform 0.35s ease,
           border-color 0.35s ease,
@@ -1339,6 +1348,12 @@
         transform: none;
       }
 
+      img {
+        max-width: 100%;
+      }
+
+      /* ===== Responsive breakpoints ===== */
+
       @media (max-width: 1024px) {
         .method-grid {
           grid-template-columns: repeat(3, 1fr);
@@ -1346,6 +1361,10 @@
 
         .hero {
           gap: 28px;
+        }
+
+        .other-projects {
+          grid-template-columns: repeat(2, 1fr);
         }
       }
 
@@ -1361,10 +1380,16 @@
         .hero {
           grid-template-columns: 1fr;
           padding-top: 115px;
+          min-height: unset;
         }
 
         .profile-area {
-          min-height: 570px;
+          min-height: 460px;
+          order: -1;
+        }
+
+        .photo-stage {
+          width: min(320px, 78%);
         }
 
         .project-grid {
@@ -1386,11 +1411,29 @@
         .stats {
           grid-template-columns: repeat(2, 1fr);
         }
+
+        .certification {
+          grid-template-columns: auto 1fr;
+          row-gap: 10px;
+        }
+
+        .certificate-date,
+        .certificate-view {
+          grid-column: 2;
+        }
+
+        .certificate-view {
+          justify-self: start;
+        }
       }
 
       @media (max-width: 680px) {
         .hero {
           padding-top: 130px;
+        }
+
+        .floating-card {
+          display: none;
         }
       }
 
@@ -1405,6 +1448,14 @@
           padding: 10px 12px 10px 16px;
         }
 
+        .brand {
+          font-size: 0.76rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          max-width: 40vw;
+        }
+
         .nav-links-mobile {
           top: 64px;
         }
@@ -1414,25 +1465,30 @@
         }
 
         h1 {
-          font-size: 2.7rem;
+          font-size: 2.5rem;
+        }
+
+        .hero-copy {
+          font-size: 0.96rem;
         }
 
         .photo-stage {
-          width: min(300px, 82%);
+          width: min(260px, 80%);
         }
 
-        .floating-card.two {
-          right: 0;
+        .profile-area {
+          min-height: 380px;
         }
 
-        .floating-card.one {
-          left: 0;
+        .hero-actions .button {
+          flex: 1 1 auto;
+          min-width: 0;
         }
 
         .project-main,
         .card,
         .contact {
-          padding: 21px;
+          padding: 20px;
         }
 
         .method-grid {
@@ -1449,7 +1505,7 @@
         }
 
         .stat strong {
-          font-size: 1.2rem;
+          font-size: 1.15rem;
         }
 
         .certification {
@@ -1460,15 +1516,57 @@
         .certificate-view {
           grid-column: 2;
         }
+
+        .section-heading {
+          padding-top: 90px;
+        }
+
+        .photo-stage.pinned {
+          width: clamp(78px, 20vw, 120px);
+          right: 12px;
+          bottom: 12px;
+        }
+
+        .loader-photo-wrap {
+          width: 190px;
+          height: 190px;
+        }
+
+        .loader-name {
+          font-size: clamp(2rem, 9vw, 2.8rem);
+        }
       }
 
-      @media (max-width: 380px) {
+      @media (max-width: 420px) {
         .method-grid {
           grid-template-columns: 1fr;
         }
 
         h1 {
-          font-size: 2.3rem;
+          font-size: 2.1rem;
+        }
+
+        .stats {
+          grid-template-columns: 1fr;
+        }
+
+        .edu-card {
+          flex-direction: column;
+        }
+
+        .edu-logo {
+          width: 52px;
+          height: 52px;
+        }
+      }
+
+      @media (max-width: 340px) {
+        .theme-toggle {
+          width: 44px;
+        }
+
+        .brand {
+          max-width: 30vw;
         }
       }
 
@@ -1487,6 +1585,7 @@
         justify-content: center;
         gap: 22px;
         background: var(--bg);
+        padding: 20px;
         transition:
           opacity 0.6s ease,
           visibility 0.6s ease;
@@ -1512,6 +1611,8 @@
         transform: scale(0.62);
         animation: loaderPhotoIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.1s
           forwards;
+        max-width: 60vw;
+        max-height: 60vw;
       }
 
       .loader-photo {
@@ -1538,8 +1639,10 @@
 
       .loader-name {
         display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         font-weight: 850;
-        font-size: clamp(2.6rem, 8vw, 3.75rem);
+        font-size: clamp(2rem, 8vw, 3.75rem);
         letter-spacing: 0.04em;
         color: var(--text);
       }
