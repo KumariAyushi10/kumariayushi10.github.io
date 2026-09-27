@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -10,7 +11,7 @@
     <title>Kumari Ayushi | Data Analyst</title>
 
     <link rel="icon" href="assets/favicon.png" type="image/png" />
-    <link rel="icon" sizes="32x32" href="assets/profile.jpeg" type="image/jpeg" />
+    <link rel="icon" sizes="32x32" href="assets/profile2.jpeg" type="image/jpeg" />
     <link rel="shortcut icon" href="assets/profile.jpeg" type="image/jpeg" />
     <link rel="apple-touch-icon" href="assets/profile.jpeg" />
     <meta name="theme-color" content="#070707" />
@@ -276,33 +277,73 @@
       .theme-toggle {
         display: inline-flex;
         align-items: center;
-        justify-content: center;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
+        width: 52px;
+        height: 28px;
+        padding: 3px;
+        border-radius: 999px;
         border: 1px solid var(--border);
-        background: rgba(214, 173, 85, 0.08);
-        color: var(--gold-light);
-        font-size: 1rem;
+        background: linear-gradient(180deg, #1c1c1c, #0c0c0c);
+        box-shadow:
+          inset 0 2px 5px rgba(0, 0, 0, 0.55),
+          inset 0 -1px 0 rgba(255, 255, 255, 0.04);
         cursor: pointer;
         flex: none;
+        position: relative;
       }
 
-      .theme-toggle:hover {
-        border-color: var(--gold);
+      .theme-toggle .track-icon {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 0.68rem;
+        line-height: 1;
+        opacity: 0.75;
+        pointer-events: none;
       }
 
-      .theme-toggle .icon-moon {
-        display: inline;
+      .theme-toggle .track-icon.sun {
+        left: 6px;
       }
-      .theme-toggle .icon-sun {
-        display: none;
+
+      .theme-toggle .track-icon.moon {
+        right: 6px;
       }
-      :root[data-theme="light"] .theme-toggle .icon-moon {
-        display: none;
+
+      .theme-toggle .switch-knob {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: linear-gradient(155deg, var(--gold-light), var(--gold));
+        box-shadow:
+          0 2px 6px rgba(0, 0, 0, 0.45),
+          0 0 10px rgba(214, 173, 85, 0.4);
+        transform: translateX(0);
+        transition: transform 0.35s cubic-bezier(0.65, -0.1, 0.35, 1.3);
+        position: relative;
+        z-index: 1;
       }
-      :root[data-theme="light"] .theme-toggle .icon-sun {
-        display: inline;
+
+      :root[data-theme="light"] .theme-toggle {
+        background: linear-gradient(180deg, #fff7e6, #f3e6c8);
+        box-shadow:
+          inset 0 2px 5px rgba(138, 95, 30, 0.18),
+          inset 0 -1px 0 rgba(255, 255, 255, 0.6);
+      }
+
+      :root[data-theme="light"] .theme-toggle .switch-knob {
+        transform: translateX(24px);
+      }
+
+      .theme-toggle:hover .switch-knob {
+        filter: brightness(1.08);
+      }
+
+      .theme-toggle:active .switch-knob {
+        transform: scale(0.92) translateX(0);
+      }
+
+      :root[data-theme="light"] .theme-toggle:active .switch-knob {
+        transform: scale(0.92) translateX(24px);
       }
 
       .brand {
@@ -622,6 +663,13 @@
         background: rgba(255, 255, 255, 0.025);
       }
 
+      .button.small {
+        min-height: 36px;
+        padding: 0 13px;
+        font-size: 0.78rem;
+        border-radius: 10px;
+      }
+
       .profile-area {
         position: relative;
         min-height: 600px;
@@ -739,9 +787,6 @@
         mix-blend-mode: overlay;
       }
 
-      /* Once the hero scrolls out of view, the polaroid settles into this
-         one fixed spot and stays there — visible on every section, in
-         both scroll directions — instead of hiding or moving around. */
       .photo-stage.pinned {
         position: fixed;
         right: clamp(14px, 4vw, 40px);
@@ -1048,22 +1093,113 @@
         font-size: 0.8rem;
       }
 
-      .skills {
-        margin-top: 22px;
-        gap: 10px;
+      /* ---- Skills section: grid of icon tiles ---- */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
+        gap: 12px;
+        margin-top: 28px;
       }
 
-      .skill {
-        padding: 11px 14px;
-        border-radius: 12px;
-        font-size: 0.82rem;
+      .skill-tile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 20px 10px;
+        text-align: center;
+        border-radius: 18px;
       }
+
+      .skill-tile:hover {
+        transform: translateY(-6px);
+      }
+
+      .skill-tile-icon {
+        position: relative;
+        min-width: 44px;
+        width: 44px;
+        height: 44px;
+        padding: 0 8px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--gold);
+        border-radius: 12px;
+        color: var(--gold-light);
+        background: rgba(214, 173, 85, 0.06);
+        font-size: 0.68rem;
+        font-weight: 850;
+        letter-spacing: 0.01em;
+        white-space: nowrap;
+        flex: none;
+        overflow: hidden;
+      }
+
+      .skill-tile-icon img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 9px;
+        background: var(--polaroid-bg);
+      }
+
+      .skill-tile-icon .skill-tile-fallback {
+        position: relative;
+        z-index: 0;
+      }
+
+      .skill-tile-name {
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--text);
+        line-height: 1.25;
+      }
+
+      @media (max-width: 560px) {
+        .skills-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      /* ---- end skills section ---- */
 
       .about-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
         gap: 14px;
         margin-top: 22px;
+      }
+
+      .edu-card {
+        display: flex;
+        gap: 18px;
+        align-items: flex-start;
+      }
+
+      .edu-logo {
+        width: 64px;
+        height: 64px;
+        flex: none;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: var(--surface-light);
+        display: grid;
+        place-items: center;
+      }
+
+      .edu-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 8px;
+      }
+
+      .edu-body {
+        flex: 1;
+        min-width: 0;
       }
 
       .certification-grid {
@@ -1079,10 +1215,9 @@
 
       .certification {
         display: grid;
-        grid-template-columns: auto 1fr auto;
+        grid-template-columns: auto 1fr auto auto;
         gap: 18px;
         align-items: center;
-        cursor: pointer;
       }
 
       .certificate-mark {
@@ -1093,8 +1228,10 @@
         border: 1px solid var(--gold);
         border-radius: 14px;
         color: var(--gold-light);
-        font-size: 1.25rem;
+        font-size: 1.8rem;
+        line-height: 1;
         box-shadow: 0 0 22px rgba(214, 173, 85, 0.1);
+        flex: none;
       }
 
       .certificate-info h3 {
@@ -1111,6 +1248,30 @@
         color: var(--gold-light);
         font-size: 0.75rem;
         white-space: nowrap;
+      }
+
+      .certificate-view {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 9px 14px;
+        border: 1px solid var(--gold);
+        border-radius: 999px;
+        color: var(--gold-light);
+        font-size: 0.76rem;
+        font-weight: 800;
+        white-space: nowrap;
+        background: rgba(214, 173, 85, 0.06);
+        transition:
+          transform 0.25s ease,
+          background 0.25s ease,
+          color 0.25s ease;
+      }
+
+      .certificate-view:hover {
+        background: linear-gradient(135deg, var(--gold-light), var(--gold));
+        color: #090909;
+        transform: translateY(-2px);
       }
 
       .contact {
@@ -1160,7 +1321,8 @@
       .skills .skill,
       .stats .stat,
       .method-grid .method,
-      .other-projects .project-card {
+      .other-projects .project-card,
+      .skills-grid .skill-tile {
         opacity: 0;
         transform: translateY(10px) scale(0.9);
         transition:
@@ -1173,7 +1335,8 @@
       .reveal.visible .skills .skill,
       .reveal.visible .stats .stat,
       .reveal.visible.method-grid .method,
-      .reveal.visible .other-projects .project-card {
+      .reveal.visible .other-projects .project-card,
+      .reveal.visible .skills-grid .skill-tile {
         opacity: 1;
         transform: none;
       }
@@ -1295,7 +1458,8 @@
           grid-template-columns: auto 1fr;
         }
 
-        .certificate-date {
+        .certificate-date,
+        .certificate-view {
           grid-column: 2;
         }
       }
@@ -1309,6 +1473,120 @@
           font-size: 2.3rem;
         }
       }
+
+      /* ---- Page loading screen: photo + animated name reveal ---- */
+      body.loading-lock {
+        overflow: hidden;
+      }
+
+      .loader {
+        position: fixed;
+        inset: 0;
+        z-index: 300;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 22px;
+        background: var(--bg);
+        transition:
+          opacity 0.6s ease,
+          visibility 0.6s ease;
+      }
+
+      .loader.loader-hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .loader-photo-wrap {
+        position: relative;
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid var(--gold);
+        box-shadow:
+          0 0 0 10px rgba(214, 173, 85, 0.08),
+          0 0 72px rgba(214, 173, 85, 0.3);
+        opacity: 0;
+        transform: scale(0.62);
+        animation: loaderPhotoIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.1s
+          forwards;
+      }
+
+      .loader-photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .loader-ring {
+        position: absolute;
+        inset: -16px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-top-color: var(--gold-light);
+        animation: spinSlow 1.4s linear infinite;
+      }
+
+      @keyframes loaderPhotoIn {
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .loader-name {
+        display: flex;
+        font-weight: 850;
+        font-size: clamp(2.6rem, 8vw, 3.75rem);
+        letter-spacing: 0.04em;
+        color: var(--text);
+      }
+
+      .loader-name span {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(14px);
+        animation: loaderLetterIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+
+      .loader-name .space {
+        width: 0.4em;
+      }
+
+      @keyframes loaderLetterIn {
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      .loader-tag {
+        color: var(--gold-light);
+        font-size: 1.15rem;
+        font-weight: 800;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        opacity: 0;
+        animation: fadeUp 0.6s ease 1.4s forwards;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .loader-photo-wrap,
+        .loader-name span,
+        .loader-tag {
+          animation-duration: 0.001ms !important;
+          animation-delay: 0s !important;
+        }
+
+        .loader-ring {
+          animation: none;
+        }
+      }
+      /* ---- end loading screen ---- */
 
       @media (prefers-reduced-motion: reduce) {
         html {
@@ -1326,7 +1604,33 @@
     </style>
   </head>
 
-  <body>
+  <body class="loading-lock">
+    <div class="loader" id="pageLoader" aria-hidden="true">
+      <div class="loader-photo-wrap">
+        <span class="loader-ring"></span>
+        <img
+          class="loader-photo"
+          src="assets/profile2.jpeg"
+          alt=""
+        />
+      </div>
+      <div class="loader-name">
+        <span style="animation-delay: 0.55s">K</span
+        ><span style="animation-delay: 0.59s">u</span
+        ><span style="animation-delay: 0.63s">m</span
+        ><span style="animation-delay: 0.67s">a</span
+        ><span style="animation-delay: 0.71s">r</span
+        ><span style="animation-delay: 0.75s">i</span
+        ><span class="space"></span
+        ><span style="animation-delay: 0.83s">A</span
+        ><span style="animation-delay: 0.87s">y</span
+        ><span style="animation-delay: 0.91s">u</span
+        ><span style="animation-delay: 0.95s">s</span
+        ><span style="animation-delay: 0.99s">h</span
+        ><span style="animation-delay: 1.03s">i</span>
+      </div>
+    </div>
+
     <div class="noise"></div>
 
     <nav>
@@ -1347,11 +1651,14 @@
           class="theme-toggle"
           id="themeToggle"
           type="button"
+          role="switch"
+          aria-checked="false"
           aria-label="Toggle light and dark mode"
           title="Toggle theme"
         >
-          <span class="icon-moon">🌙</span>
-          <span class="icon-sun">☀️</span>
+          <span class="track-icon sun">☀️</span>
+          <span class="track-icon moon">🌙</span>
+          <span class="switch-knob"></span>
         </button>
 
         <a class="nav-button" href="mailto:kumariayushi8383@gmail.com"
@@ -1386,7 +1693,7 @@
         <div class="reveal">
           <div class="eyebrow">
             <span class="dot"></span>
-            DATA ANALYST · BUSINESS INTELLIGENCE
+            DATA ANALYSIS · BUSINESS INTELLIGENCE
           </div>
 
           <h1>
@@ -1951,24 +2258,113 @@
             business intelligence and machine learning.
           </p>
 
-          <div class="skills">
-            <span class="skill">Python</span>
-            <span class="skill">SQL</span>
-            <span class="skill">Power BI</span>
-            <span class="skill">Microsoft Excel</span>
-            <span class="skill">Tableau</span>
-            <span class="skill">Pandas</span>
-            <span class="skill">NumPy</span>
-            <span class="skill">Scikit-learn</span>
-            <span class="skill">Matplotlib</span>
-            <span class="skill">Seaborn</span>
-            <span class="skill">RFM Segmentation</span>
-            <span class="skill">K-Means</span>
-            <span class="skill">Cohort Analysis</span>
-            <span class="skill">Time-Series Analysis</span>
-            <span class="skill">Data Visualization</span>
-            <span class="skill">Business Intelligence</span>
-            <span class="skill">Git & GitHub</span>
+          <div class="skills-grid">
+            <div class="card skill-tile reveal" style="--stagger: 0">
+              <span class="skill-tile-icon">
+                <img src="https://cdn.simpleicons.org/python" alt="" loading="lazy" onerror="this.remove()" />
+              </span>
+              <span class="skill-tile-name">Python</span>
+            </div>
+            <div class="card skill-tile reveal" style="--stagger: 1">
+              <span class="skill-tile-icon">
+                <img src="https://cdn.simpleicons.org/mysql" alt="" loading="lazy" onerror="this.remove()" />
+              </span>
+              <span class="skill-tile-name">SQL</span>
+            </div>
+            <div class="card skill-tile reveal" style="--stagger: 2">
+              <span class="skill-tile-icon">
+                <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/power-bi-icon.png" alt="" loading="lazy" onerror="this.remove()" />
+              </span>
+              <span class="skill-tile-name">Power BI</span>
+            </div>
+            <div class="card skill-tile reveal" style="--stagger: 3">
+              <span class="skill-tile-icon">
+                <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/microsoft-excel-icon.png" alt="" loading="lazy" onerror="this.remove()" />
+              </span>
+              <span class="skill-tile-name">Microsoft Excel</span>
+            </div>
+            <div class="card skill-tile reveal" style="--stagger: 4">
+              <span class="skill-tile-icon">
+                <img src=https://play-lh.googleusercontent.com/aWQ9yT2jGnyy72PovfOsbO6gZkRZ_lP7gL0c_tVv-P5SGz_lG-QgRYpqikj1woQATWiNyHI9XMuaJC5Z-1GVvA=w240-h480-rw alt="" loading="lazy" onerror="this.remove()" />
+              </span>
+              <span class="skill-tile-name">Tableau</span>
+            </div>
+            <div class="card skill-tile reveal" style="--stagger: 5">
+              <span class="skill-tile-icon">
+                <img src="https://cdn.simpleicons.org/pandas" alt="" loading="lazy" onerror="this.remove()" />
+              </span>
+              <span class="skill-tile-name">Pandas</span>
+            </div>
+            <div class="card skill-tile reveal" style="--stagger: 6">
+              <span class="skill-tile-icon">
+                <img src="https://cdn.simpleicons.org/numpy" alt="" loading="lazy" onerror="this.remove()" />              </span>
+              <span class="skill-tile-name">NumPy</span>
+            </div>
+            <div class="card skill-tile reveal" style="--stagger: 7">
+              <span class="skill-tile-icon">
+                <img src="https://cdn.simpleicons.org/scikitlearn" alt="" loading="lazy" onerror="this.remove()" />
+                            </span>
+              <span class="skill-tile-name">Scikit-learn</span>
+            </div>
+            <div class="card skill-tile reveal" style="--stagger: 8">
+              <span class="skill-tile-icon">
+                <img src="https://media.licdn.com/dms/image/v2/D4D12AQFq38cGkv_oHQ/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1679493396295?e=2147483647&v=beta&t=8hBosvau_9_t0Nt46DZ89TxWOgFZg_z47cMFn8o5cmM" alt="" loading="lazy" onerror="this.remove()" />              </span>
+              <span class="skill-tile-name">Matplotlib</span>
+            </div>
+            <div class="card skill-tile reveal" style="--stagger: 9">
+              <span class="skill-tile-icon">
+                <img src="https://seaborn.pydata.org/_images/logo-mark-lightbg.svg" alt="" loading="lazy" onerror="this.remove()" />
+              </span>
+              <span class="skill-tile-name">Seaborn</span>
+            </div>
+            <div class="card skill-tile reveal" style="--stagger: 10">
+              <span class="skill-tile-icon">
+                  <img src="assets/rfm.png" alt="" loading="lazy" onerror="this.remove()" />              
+                </span>
+              <span class="skill-tile-name">RFM Segmentation</span>
+            </div>
+            <div class="card skill-tile reveal" style="--stagger: 11">
+              <span class="skill-tile-icon">
+                <img src="assets/kmeans.png" alt="" loading="lazy" onerror="this.remove()" />
+              </span>
+              <span class="skill-tile-name">K-Means</span>
+            </div>
+            <div class="card skill-tile reveal" style="--stagger: 12">
+              <span class="skill-tile-icon">
+                <img src="assets/ca.png" alt="" loading="lazy" onerror="this.remove()" />
+              </span>
+              <span class="skill-tile-name">Cohort Analysis</span>
+            </div>
+            <div class="card skill-tile reveal" style="--stagger: 13">
+              <span class="skill-tile-icon">
+                <img src="assets/tsana.png" alt="" loading="lazy" onerror="this.remove()" />
+              </span>
+              <span class="skill-tile-name">Time-Series Analysis</span>
+            </div>
+            <div class="card skill-tile reveal" style="--stagger: 14">
+              <span class="skill-tile-icon">
+                <img src="assets/dv.png" alt="" loading="lazy" onerror="this.remove()" />
+              </span>
+              <span class="skill-tile-name">Data Visualization</span>
+            </div>
+            <div class="card skill-tile reveal" style="--stagger: 15">
+              <span class="skill-tile-icon">
+                <img src="assets/BusIn.png" alt="" loading="lazy" onerror="this.remove()" />
+              </span>
+              <span class="skill-tile-name">Business Intelligence</span>
+            </div>
+            <div class="card skill-tile reveal" style="--stagger: 16">
+              <span class="skill-tile-icon">
+                <img src="https://cdn.simpleicons.org/git" alt="" loading="lazy" onerror="this.remove()" />
+              </span>
+              <span class="skill-tile-name">Git</span>
+            </div>
+            <div class="card skill-tile reveal" style="--stagger: 17">
+              <span class="skill-tile-icon">
+                <img src="https://cdn.simpleicons.org/github" alt="" loading="lazy" onerror="this.remove()" />
+                            </span>
+              <span class="skill-tile-name">GitHub</span>
+            </div>
           </div>
         </div>
       </section>
@@ -1979,22 +2375,32 @@
           <h2>Where I’m building experience.</h2>
 
           <div class="about-grid">
-            <article class="card reveal">
-              <div class="kicker">CURRENT</div>
-              <h3>Data Analyst Intern · Bondub</h3>
-              <p>
-                Working with data to identify patterns, communicate insights and
-                support data-driven decisions.
-              </p>
+            <article class="card edu-card reveal">
+              <div class="edu-logo">
+                <img src="assets/Bondub.png" alt="Bondub logo" />
+              </div>
+              <div class="edu-body">
+                <div class="kicker">CURRENT</div>
+                <h3>Data Analyst Intern · Bondub</h3>
+                <p>
+                  Working with data to identify patterns, communicate insights and
+                  support data-driven decisions.
+                </p>
+              </div>
             </article>
 
-            <article class="card reveal">
-              <div class="kicker">PREVIOUS</div>
-              <h3>AI-ML Intern · Eduskills</h3>
-              <p>
-                AI/ML internship experience through the Eduskills program,
-                supported by Google for Developers.
-              </p>
+            <article class="card edu-card reveal">
+              <div class="edu-logo">
+                <img src="assets/Eduskills.jpg" alt="Eduskills logo" />
+              </div>
+              <div class="edu-body">
+                <div class="kicker">PREVIOUS</div>
+                <h3>AI-ML Intern · Eduskills</h3>
+                <p>
+                  AI/ML internship experience through the Eduskills program,
+                  supported by Google for Developers.
+                </p>
+              </div>
             </article>
           </div>
         </div>
@@ -2006,8 +2412,8 @@
           <h2>Continuous learning.</h2>
 
           <div class="certification-grid">
-            <a class="card certification reveal" href="assets/certificate.pdf" target="_blank" rel="noopener">
-              <div class="certificate-mark">✦</div>
+            <div class="card certification reveal">
+              <div class="certificate-mark">•</div>
 
               <div class="certificate-info">
                 <h3>
@@ -2017,10 +2423,12 @@
               </div>
 
               <div class="certificate-date">Issued Aug 2026</div>
-            </a>
 
-            <a class="card certification reveal" href="https://media.licdn.com/dms/document/media/v2/D4E1FAQHsUxUVEOheOw/feedshare-document-pdf-analyzed/B4EZP9ZO.6HsAY-/0/1735123072586?e=1790812800&v=beta&t=suvZcANvgeAZPWh6bsB7Y1CG3Rlc8gN0QMp9oQUDHiQ" target="_blank" rel="noopener">
-              <div class="certificate-mark">✦</div>
+              <a class="certificate-view" href="assets/certificate.pdf" target="_blank" rel="noopener">View certificate ↗</a>
+            </div>
+
+            <div class="card certification reveal">
+              <div class="certificate-mark">•</div>
 
               <div class="certificate-info">
                 <h3>Database Design</h3>
@@ -2028,10 +2436,12 @@
               </div>
 
               <div class="certificate-date">Issued Dec 2024</div>
-            </a>
 
-            <a class="card certification reveal" href="https://media.licdn.com/dms/document/media/v2/D4E1FAQGdf_XRv4VY1w/feedshare-document-pdf-analyzed/feedshare-document-pdf-analyzed/0/1733123846530?e=1790812800&v=beta&t=_a-76HE_lz42VH9_TBQ5YB_4ZSFRKO8bQKWOCs0YhI8" target="_blank" rel="noopener">
-              <div class="certificate-mark">✦</div>
+              <a class="certificate-view" href="https://media.licdn.com/dms/document/media/v2/D4E1FAQHsUxUVEOheOw/feedshare-document-pdf-analyzed/B4EZP9ZO.6HsAY-/0/1735123072586?e=1790812800&v=beta&t=suvZcANvgeAZPWh6bsB7Y1CG3Rlc8gN0QMp9oQUDHiQ" target="_blank" rel="noopener">View certificate ↗</a>
+            </div>
+
+            <div class="card certification reveal">
+              <div class="certificate-mark">•</div>
 
               <div class="certificate-info">
                 <h3>Mastering Python</h3>
@@ -2039,10 +2449,12 @@
               </div>
 
               <div class="certificate-date">Issued Dec 2024</div>
-            </a>
 
-            <a class="card certification reveal" href="https://media.licdn.com/dms/document/media/v2/D4E1FAQGm7YpnrN-awA/feedshare-document-pdf-analyzed/feedshare-document-pdf-analyzed/0/1732545274960?e=1790812800&v=beta&t=cRFTKXwT8BzNk6NEPZsvbCjQHoTyTvnfJwAYwrtrtGA" target="_blank" rel="noopener">
-              <div class="certificate-mark">✦</div>
+              <a class="certificate-view" href="https://media.licdn.com/dms/document/media/v2/D4E1FAQGdf_XRv4VY1w/feedshare-document-pdf-analyzed/feedshare-document-pdf-analyzed/0/1733123846530?e=1790812800&v=beta&t=_a-76HE_lz42VH9_TBQ5YB_4ZSFRKO8bQKWOCs0YhI8" target="_blank" rel="noopener">View certificate ↗</a>
+            </div>
+
+            <div class="card certification reveal">
+              <div class="certificate-mark">•</div>
 
               <div class="certificate-info">
                 <h3>Excel with Copilot: AI-Driven Data Analysis</h3>
@@ -2050,7 +2462,23 @@
               </div>
 
               <div class="certificate-date">Issued Nov 2024</div>
-            </a>
+
+              <a class="certificate-view" href="https://media.licdn.com/dms/document/media/v2/D4E1FAQGm7YpnrN-awA/feedshare-document-pdf-analyzed/feedshare-document-pdf-analyzed/0/1732545274960?e=1790812800&v=beta&t=cRFTKXwT8BzNk6NEPZsvbCjQHoTyTvnfJwAYwrtrtGA" target="_blank" rel="noopener">View certificate ↗</a>
+            </div>
+            <div class="card certification reveal">
+              <div class="certificate-mark">•</div>
+
+              <div class="certificate-info">
+                <h3>
+                  Machine Learning
+                </h3>
+                <p>Internshala Trainings · Machine Learning</p>
+              </div>
+
+              <div class="certificate-date">Issued Dec 2024</div>
+
+              <a class="certificate-view" href="assets/certificate2.pdf" target="_blank" rel="noopener">View certificate ↗</a>
+            </div>
           </div>
         </div>
       </section>
@@ -2061,11 +2489,40 @@
           <h2>Academic background.</h2>
 
           <div class="about-grid">
-            <article class="card reveal">
-              <div class="kicker">B.TECH</div>
-              <h3>Computer Science & Engineering</h3>
-              <p>Galgotias University, Greater Noida, Uttar Pradesh, India.</p>
-              <p class="year">2023 - 2027</p> 
+            <article class="card edu-card reveal">
+              <div class="edu-logo">
+                <img src="assets/Galgotias_University.png" alt="Galgotias University logo" />
+              </div>
+              <div class="edu-body">
+                <div class="kicker">B.TECH</div>
+                <h3>Computer Science &amp; Engineering</h3>
+                <p>Galgotias University, Greater Noida, Uttar Pradesh</p>
+                <p class="year">2023 - 2027</p>
+              </div>
+            </article>
+
+            <article class="card edu-card reveal">
+              <div class="edu-logo">
+                <img src="assets/DAV.webp" alt="DAV logo" />
+              </div>
+              <div class="edu-body">
+                <div class="kicker">CLASS 12TH</div>
+                <h3>Senior Secondary Education</h3>
+                <p>DAV Public School, Pratap Vihar, Ghaziabad, Uttar Pradesh</p>
+                <p class="year">2022 - 2023</p>
+              </div>
+            </article>
+
+            <article class="card edu-card reveal">
+              <div class="edu-logo">
+                <img src="assets/DAV.webp" alt="DAV logo" />
+              </div>
+              <div class="edu-body">
+                <div class="kicker">CLASS 10TH</div>
+                <h3>Secondary Education</h3>
+                <p>DAV Public School, Pratap Vihar, Ghaziabad, Uttar Pradesh</p>
+                <p class="year">2020 - 2021</p>
+              </div>
             </article>
           </div>
         </div>
@@ -2115,32 +2572,62 @@
       </section>
     </main>
 
-    <footer>© 2026 Kumari Ayushi · Data Analytics Portfolio</footer>
+    <footer>© 2026 Kumari Ayushi · Portfolio</footer>
 
     <script>
-      // ---- Theme toggle (light / dark) ----
+      // ---- Page loading screen: hide once the intro has played ----
+      const pageLoader = document.getElementById("pageLoader");
+      const reduceMotionQuery = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      );
+      const loaderHoldTime = reduceMotionQuery.matches ? 300 : 2100;
+
+      function hidePageLoader() {
+        pageLoader.classList.add("loader-hidden");
+        document.body.classList.remove("loading-lock");
+        setTimeout(() => {
+          pageLoader.style.display = "none";
+        }, 650);
+      }
+
+      window.addEventListener("load", () => {
+        setTimeout(hidePageLoader, loaderHoldTime);
+      });
+
+      // Safety net in case the load event is delayed by slow assets
+      setTimeout(hidePageLoader, loaderHoldTime + 3000);
+
+      // ---- Theme toggle (light switch style) ----
       const root = document.documentElement;
       const themeToggle = document.getElementById("themeToggle");
       const savedTheme = localStorage.getItem("ka-theme");
 
-      if (
-        savedTheme === "light" ||
-        (!savedTheme &&
-          window.matchMedia("(prefers-color-scheme: light)").matches &&
-          !window.matchMedia("(prefers-color-scheme: dark)").matches)
+      function applyTheme(isLight) {
+        if (isLight) {
+          root.setAttribute("data-theme", "light");
+        } else {
+          root.removeAttribute("data-theme");
+        }
+        themeToggle.setAttribute("aria-checked", isLight ? "true" : "false");
+      }
+
+      if (savedTheme === "light") {
+        applyTheme(true);
+      } else if (savedTheme === "dark") {
+        applyTheme(false);
+      } else if (
+        window.matchMedia("(prefers-color-scheme: light)").matches &&
+        !window.matchMedia("(prefers-color-scheme: dark)").matches
       ) {
-        root.setAttribute("data-theme", "light");
+        applyTheme(true);
+      } else {
+        applyTheme(false);
       }
 
       themeToggle.addEventListener("click", () => {
         const isLight = root.getAttribute("data-theme") === "light";
-        if (isLight) {
-          root.removeAttribute("data-theme");
-          localStorage.setItem("ka-theme", "dark");
-        } else {
-          root.setAttribute("data-theme", "light");
-          localStorage.setItem("ka-theme", "light");
-        }
+        applyTheme(!isLight);
+        localStorage.setItem("ka-theme", !isLight ? "light" : "dark");
       });
 
       // ---- Mobile nav: hamburger toggle open/close ----
